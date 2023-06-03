@@ -1,5 +1,23 @@
+'use client';
+
 import './globals.css'
 import { Inter } from 'next/font/google'
+import NavBar from './components/nav'
+
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    mode: 'dark',
+    primary: {
+      main: '#3f51b5',
+    },
+    secondary: {
+      main: '#f50057',
+    },
+  },
+});
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,7 +33,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <ThemeProvider theme={theme}>
+        <body className={inter.className}>      
+          <NavBar/>
+          {children}
+        </body>
+      </ThemeProvider>
     </html>
   )
 }
